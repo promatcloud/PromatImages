@@ -1,0 +1,10 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Promat.Images/obj
+/Promat.Images/bin
+/Promat.Images.Test/obj
+/Promat.Images.Test/bin
+/Promat.Images.Test/Images/output

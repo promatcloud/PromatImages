@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promat.Images", "Promat.Images\Promat.Images.csproj", "{A39FD2E5-FF0D-42B4-BBB1-A6F6DE8FB6BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promat.Images.Test", "Promat.Images.Test\Promat.Images.Test.csproj", "{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A39FD2E5-FF0D-42B4-BBB1-A6F6DE8FB6BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39FD2E5-FF0D-42B4-BBB1-A6F6DE8FB6BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39FD2E5-FF0D-42B4-BBB1-A6F6DE8FB6BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39FD2E5-FF0D-42B4-BBB1-A6F6DE8FB6BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDAE1191-8259-4FEC-949A-18508E168B37}
+	EndGlobalSection
+EndGlobal
