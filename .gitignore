@@ -3,6 +3,7 @@
 ################################################################################
 
 /.vs
+/Promat.Images/Promat.Images.csproj.user
 /Promat.Images/obj
 /Promat.Images/bin
 /Promat.Images.Test/obj

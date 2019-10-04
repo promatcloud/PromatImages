@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>PromatImages</PackageId>
+    <Authors>Promat Team</Authors>
+    <Version>1.0.1</Version>
+    <Company>Promat Asesoría técnica de servicios</Company>
+    <Description>Promat Asesoría técnica de servicios</Description>
+    <PackageTags>images csharp netstandard</PackageTags>
+    <Copyright>Promat Asesoría técnica de servicios</Copyright>
+    <PackageIconUrl>https://github.com/promatcloud/Branding/blob/master/icons/org/promat.512.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/promatcloud/PromatImages</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/promatcloud/PromatImages</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
