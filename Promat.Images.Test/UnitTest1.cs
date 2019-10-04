@@ -46,5 +46,14 @@ namespace Tests
                     .Compose();
             resultImage.Save(Path.Combine(OutputPath, "composition2.png"));
         }
+        [Test]
+        public void Test3()
+        {
+            var resultImage = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2],500, 500), Transformation.Resize(Images[0], 300, 300));
+            var resultImage2 = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2],500, 500), Transformation.Resize(Images[0], 300, 300), 0.9f);
+
+            resultImage.Save(Path.Combine(OutputPath, "composition3_1.png"));
+            resultImage2.Save(Path.Combine(OutputPath, "composition3_2.png"));
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Promat.Images.Models
         public int Width { get; private set; }
         public int Height { get; private set; }
         public Point PointToDrawInComposition { get; private set; }
-        public float Opacity { get; set; } = 1;
+        public float Opacity { get; private set; }
 
         public ImageComposeConfiguration(System.Drawing.Image image, int width, int height, Point pointToDrawInComposition)
             => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), width, height, pointToDrawInComposition);
@@ -22,6 +22,16 @@ namespace Promat.Images.Models
             => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), image.Width, image.Height, pointToDrawInComposition);
         public ImageComposeConfiguration(System.Drawing.Image image)
             => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), image.Width, image.Height, Point.Empty);
+        public ImageComposeConfiguration(System.Drawing.Image image, int width, int height, Point pointToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), width, height, pointToDrawInComposition, opacity);
+        public ImageComposeConfiguration(System.Drawing.Image image, int width, int height, int coordinateXToDrawInComposition, int coordinateYToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition), opacity);
+        public ImageComposeConfiguration(System.Drawing.Image image, int width, int height, float opacity)
+            => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), width, height, Point.Empty, opacity);
+        public ImageComposeConfiguration(System.Drawing.Image image, Point pointToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), image.Width, image.Height, pointToDrawInComposition, opacity);
+        public ImageComposeConfiguration(System.Drawing.Image image, float opacity)
+            => ImageComposeConfigurationConstructor(image.ToImageSharpImage(), image.Width, image.Height, Point.Empty, opacity);
 
         public ImageComposeConfiguration(Image image, int width, int height, Point pointToDrawInComposition)
             => ImageComposeConfigurationConstructor(image, width, height, pointToDrawInComposition);
@@ -33,6 +43,16 @@ namespace Promat.Images.Models
             => ImageComposeConfigurationConstructor(image, image.Width, image.Height, pointToDrawInComposition);
         public ImageComposeConfiguration(Image image)
             => ImageComposeConfigurationConstructor(image, image.Width, image.Height, Point.Empty);
+        public ImageComposeConfiguration(Image image, int width, int height, Point pointToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(image, width, height, pointToDrawInComposition, opacity);
+        public ImageComposeConfiguration(Image image, int width, int height, int coordinateXToDrawInComposition, int coordinateYToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(image, width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition), opacity);
+        public ImageComposeConfiguration(Image image, int width, int height, float opacity)
+            => ImageComposeConfigurationConstructor(image, width, height, Point.Empty, opacity);
+        public ImageComposeConfiguration(Image image, Point pointToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(image, image.Width, image.Height, pointToDrawInComposition, opacity);
+        public ImageComposeConfiguration(Image image, float opacity)
+            => ImageComposeConfigurationConstructor(image, image.Width, image.Height, Point.Empty, opacity);
 
         public ImageComposeConfiguration(string imageFile)
         {
@@ -54,13 +74,53 @@ namespace Promat.Images.Models
             => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition));
         public ImageComposeConfiguration(string imageFile, int width, int height)
             => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, Point.Empty);
+        public ImageComposeConfiguration(string imageFile, float opacity)
+        {
+            Image = Image.Load(imageFile);
+            Width = Image.Width;
+            Height = Image.Height;
+            PointToDrawInComposition = Point.Empty;
+            SetOpacity(opacity);
+        }
+        public ImageComposeConfiguration(string imageFile, Point pointToDrawInComposition, float opacity)
+        {
+            Image = Image.Load(imageFile);
+            Width = Image.Width;
+            Height = Image.Height;
+            PointToDrawInComposition = pointToDrawInComposition;
+            SetOpacity(opacity);
+        }
+        public ImageComposeConfiguration(string imageFile, int width, int height, Point pointToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, pointToDrawInComposition, opacity);
+        public ImageComposeConfiguration(string imageFile, int width, int height, int coordinateXToDrawInComposition, int coordinateYToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition), opacity);
+        public ImageComposeConfiguration(string imageFile, int width, int height, float opacity)
+            => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, Point.Empty, opacity);
 
-        private void ImageComposeConfigurationConstructor(Image image, int width, int height, Point pointToDrawInComposition)
+        private void SetOpacity(float opacity)
+        {
+            if (opacity > 1)
+            {
+                Opacity = 1;
+                return;
+            }
+
+            if (opacity < 0)
+            {
+                Opacity = 0;
+                return;
+            }
+
+            Opacity = opacity;
+        }
+
+        private void ImageComposeConfigurationConstructor(Image image, int width, int height, Point pointToDrawInComposition, float opacity = 1)
         {
             Image = image;
             Width = width;
             Height = height;
             PointToDrawInComposition = pointToDrawInComposition;
+            SetOpacity(opacity);
         }
     }
 }
