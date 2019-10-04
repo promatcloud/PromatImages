@@ -1,2 +1,13 @@
-# PromatImages
-LibrerÌa para combinar, redimensionar y reescalar im·genes que por debajo utiliza [ImageSharp](https://github.com/SixLabors/ImageSharp).
+<h1 align="center">
+<img src="https://github.com/promatcloud/Branding/blob/master/icons/org/promat.512.png" alt="promat" width="256"/>
+ <br/>
+ PromatImages
+</h1>
+
+<div align="center">
+
+[![Build status](https://ci.appveyor.com/api/projects/status/0by9pq4npd3k6fto?svg=true)](https://ci.appveyor.com/project/promatcloud/promatimages)
+
+</div>
+
+Librer√≠a para combinar, redimensionar y reescalar im√°genes que por debajo utiliza [ImageSharp](https://github.com/SixLabors/ImageSharp).
