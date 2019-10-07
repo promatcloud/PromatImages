@@ -23,11 +23,11 @@ platform: Any CPU
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '{version}'
-  package_version: '{version}'
-  assembly_version: '{version}'
-  file_version: '{version}'
-  informational_version: '{version}'
+  version: '{buildVersion}'
+  package_version: '{nugetVersion}'
+  assembly_version: '{buildVersion}'
+  file_version: '{buildVersion}'
+  informational_version: '{nugetVersion}'
 
 before_build:
 - cmd: nuget restore
@@ -36,7 +36,7 @@ build:
   verbosity: minimal
 
 after_build:
-- nuget pack PromatImages.nuspec
+- nuget pack Promat.Images\Promat.Images.csproj
 
 artifacts:
 - path: '*.nupkg'

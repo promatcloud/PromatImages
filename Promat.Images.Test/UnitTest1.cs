@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using NUnit.Framework;
 using Promat.Images;
 using Promat.Images.Models;
-using Resources = Promat.Images.Test.Properties.Resources;
 
 namespace Tests
 {
@@ -69,19 +68,19 @@ namespace Tests
         public void Test4()
         {
             // Redimensionar a partir de un System.Drawing.Image o System.Drawing.Bitmap
-            Image miImagenRedimensionada1 = Transformation.Resize(Resources.PromatLogo, 32, 32);
+            Image miImagenRedimensionada1 = Transformation.Resize(Image.FromFile(PromatLogoFile), 32, 32);
 
             // Redimensionar a partir de un archivo
             Image miImagenRedimensionada2 = Transformation.Resize(PromatLogoFile, 16, 16);
 
             // Reescalado a partir de un System.Drawing.Image o System.Drawing.Bitmap
-            Image miImagenReescalada1 = Transformation.Scale(Resources.PromatLogo, 150, 120);
+            Image miImagenReescalada1 = Transformation.Scale(Image.FromFile(PromatLogoFile), 150, 120);
 
             // Reescalado a partir de un archivo
             Image miImagenReescalada2 = Transformation.Scale(PromatLogoFile, 75, 50);
 
             // Cambiar la opacidad 
-            Image miImagenSemitransparente1 = Transformation.Opacity(Resources.PromatLogo, 0.5f);
+            Image miImagenSemitransparente1 = Transformation.Opacity(Image.FromFile(PromatLogoFile), 0.5f);
             // Cambiar la opacidad 
             Image miImagenSemitransparente2 = Transformation.Opacity(PromatLogoFile, 0.5f);
         }
