@@ -39,7 +39,7 @@ after_build:
 - cmd: echo $(nugetVersion)
 - cmd: echo "$(nugetVersion)"
 - cmd: echo '$(nugetVersion)'
-- dotnet pack Promat.Images\Promat.Images.csproj --configuration Release --include-symbols --no-build --output "C:\projects\promatimages" -p:PackageVersion=$(nugetVersion)
+- dotnet pack Promat.Images\Promat.Images.csproj --configuration Release --include-symbols --no-build --output "C:\projects\promatimages"
 
 artifacts:
 - path: '*.nupkg'
