@@ -36,7 +36,7 @@ build:
   verbosity: minimal
 
 after_build:
-- dotnet pack Promat.Images\Promat.Images.csproj --configuration Release --include-symbols --no-build
+- nuget pack Promat.Images\Promat.Images.csproj -Symbols -Properties version="$(nugetVersion)"
 
 artifacts:
 - path: '*.nupkg'
