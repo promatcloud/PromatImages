@@ -23,10 +23,10 @@ platform: Any CPU
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '$(buildVersion)'
+  version: '$(nugetVersion)'
   package_version: '$(nugetVersion)'
-  assembly_version: '$(buildVersion)'
-  file_version: '$(buildVersion)'
+  assembly_version: '$(nugetVersion)'
+  file_version: '$(nugetVersion)'
   informational_version: '$(nugetVersion)'
 
 before_build:
@@ -45,4 +45,5 @@ deploy:
 - provider: NuGet
   api_key:
     secure: GX63rzrPuxksA6hBiWaL2xOboo70e+5tY6ooRkx0gmn7OGu8SvnGtb52bl1mZ0z4
+  skip_symbols: true
   artifact: /.*\.nupkg/
