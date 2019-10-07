@@ -7,7 +7,7 @@
 <div align="center">
 
 [![Build status](https://ci.appveyor.com/api/projects/status/0by9pq4npd3k6fto?svg=true)](https://ci.appveyor.com/project/promatcloud/promatimages)
-[![Nuget Downloads](https://buildstats.info/nuget/Promat.Images)](https://www.nuget.org/packages/Promat.Images/)
+[![NuGet Badge](https://buildstats.info/nuget/Promat.Images?includePreReleases=true)](https://www.nuget.org/packages/Promat.Images/)
 
 </div>
 
