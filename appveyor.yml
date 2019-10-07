@@ -47,5 +47,5 @@ deploy:
     secure: GX63rzrPuxksA6hBiWaL2xOboo70e+5tY6ooRkx0gmn7OGu8SvnGtb52bl1mZ0z4
   skip_symbols: true
   artifact: /.*\.nupkg/
- on:
+  on:
     APPVEYOR_REPO_TAG: true
