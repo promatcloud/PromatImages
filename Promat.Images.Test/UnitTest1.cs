@@ -3,9 +3,11 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Mime;
 using System.Reflection;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using NUnit.Framework;
 using Promat.Images;
 using Promat.Images.Models;
+using Resources = Promat.Images.Test.Properties.Resources;
 
 namespace Tests
 {
@@ -13,6 +15,7 @@ namespace Tests
     {
         public string[] Images { get; set; }
         public string OutputPath { get; set; }
+        public string PromatLogoFile => Images[2];
 
         [SetUp]
         public void Setup()
@@ -39,21 +42,48 @@ namespace Tests
         [Test]
         public void Test2()
         {
+            // Iniciamos la composición indicando que será de 512x512 pixels
             var resultImage = Composition.Begin(512, 512)
+                    // Añadimos las imágenes
+                    // la primera imagen se dibujará en un tamaño de 400 x 400 en el centro de la composición
                     .Add(Images[0], 400, 400, ContentAlignment.MiddleCenter)
+                    // la sengunda imagen se dibujará en un tamaño de 350 x 350 en el centro de la composición
                     .Add(Images[1], 350, 350, ContentAlignment.MiddleCenter)
+                    // la tercera imagen se dibujará en un tamaño de 256 x 256 en la esquiña inferior izquiera de la composición y ademas la desplazaremos 40 px más a la iaquiera y 5 px más hacia abajo
                     .Add(Images[2], 256, 256, ContentAlignment.BottomLeft, -40, 5)
+                    // Obtenemos la composición con los parámetros configurados anteriormente
                     .Compose();
+            // Guardamos la composición
             resultImage.Save(Path.Combine(OutputPath, "composition2.png"));
         }
         [Test]
         public void Test3()
         {
-            var resultImage = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2],500, 500), Transformation.Resize(Images[0], 300, 300));
-            var resultImage2 = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2],500, 500), Transformation.Resize(Images[0], 300, 300), 0.9f);
+            var resultImage = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2], 500, 500), Transformation.Resize(Images[0], 300, 300));
+            var resultImage2 = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2], 500, 500), Transformation.Resize(Images[0], 300, 300), 0.9f);
 
             resultImage.Save(Path.Combine(OutputPath, "composition3_1.png"));
             resultImage2.Save(Path.Combine(OutputPath, "composition3_2.png"));
+        }
+        [Test]
+        public void Test4()
+        {
+            // Redimensionar a partir de un System.Drawing.Image o System.Drawing.Bitmap
+            Image miImagenRedimensionada1 = Transformation.Resize(Resources.PromatLogo, 32, 32);
+
+            // Redimensionar a partir de un archivo
+            Image miImagenRedimensionada2 = Transformation.Resize(PromatLogoFile, 16, 16);
+
+            // Reescalado a partir de un System.Drawing.Image o System.Drawing.Bitmap
+            Image miImagenReescalada1 = Transformation.Scale(Resources.PromatLogo, 150, 120);
+
+            // Reescalado a partir de un archivo
+            Image miImagenReescalada2 = Transformation.Scale(PromatLogoFile, 75, 50);
+
+            // Cambiar la opacidad 
+            Image miImagenSemitransparente1 = Transformation.Opacity(Resources.PromatLogo, 0.5f);
+            // Cambiar la opacidad 
+            Image miImagenSemitransparente2 = Transformation.Opacity(PromatLogoFile, 0.5f);
         }
     }
 }
