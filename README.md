@@ -14,7 +14,8 @@
 Librería para combinar, redimensionar y reescalar imágenes que por debajo utiliza [ImageSharp](https://github.com/SixLabors/ImageSharp).
 
 **Importante!!! => el paquete NuGet estará en versión beta mientras ImageSharp lo esté**
-PromatImages is available from: **NuGet [PromatImages](https://www.nuget.org/packages/Promat.Images)**
+
+PromatImages está diponible por **NuGet [Promat.Images](https://www.nuget.org/packages/Promat.Images)**
 
 # Composición
 
