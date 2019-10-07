@@ -36,7 +36,7 @@ build:
   verbosity: minimal
 
 after_build:
-- nuget pack Promat.Images\Promat.Images.csproj -Symbols -Properties version="$(nugetVersion)"
+- nuget pack Promat.Images\Promat.Images.csproj -Symbols -Properties PackageId="PromatImages";Authors="Promat Team";Company="Promat Asesoría técnica de servicios";Description="Promat Asesoría técnica de servicios";Copyright="Promat Asesoría técnica de servicios";PackageTags="images csharp netstandard";PackageIconUrl="https://github.com/promatcloud/Branding/blob/master/icons/org/promat.512.png";PackageProjectUrl="https://github.com/promatcloud/PromatImages";RepositoryUrl="https://github.com/promatcloud/PromatImages";version='$(nugetVersion)'
 
 artifacts:
 - path: '*.nupkg'
