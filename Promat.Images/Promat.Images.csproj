@@ -7,7 +7,7 @@
     <Version>1.0.1</Version>
     <PackageVersion>1.0.22</PackageVersion>
     <Company>Promat Asesoría técnica de servicios</Company>
-    <Description>Promat Asesoría técnica de servicios</Description>
+    <Description>Librería para combinar, redimensionar y reescalar imágenes que por debajo utiliza ImageSharp.</Description>
     <PackageTags>images csharp netstandard</PackageTags>
     <Copyright>Promat Asesoría técnica de servicios</Copyright>
     <PackageIcon>icon.png</PackageIcon>
