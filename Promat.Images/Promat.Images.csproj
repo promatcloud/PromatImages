@@ -10,7 +10,7 @@
     <Description>Promat Asesoría técnica de servicios</Description>
     <PackageTags>images csharp netstandard</PackageTags>
     <Copyright>Promat Asesoría técnica de servicios</Copyright>
-    <PackageIconUrl>https://github.com/promatcloud/Branding/blob/master/icons/org/promat.512.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/promatcloud/PromatImages</PackageProjectUrl>
     <RepositoryUrl>https://github.com/promatcloud/PromatImages</RepositoryUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

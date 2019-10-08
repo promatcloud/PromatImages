@@ -1,24 +1,13 @@
-version: 1.0.{build}
+version: 1.0.1.{build}
 
 image: Visual Studio 2019
 
 environment:
-  packageVersion: 1.1
+  packageVersion: 1.0.1
 
 init:
 - ps: >-
-    $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
-
     $env:nugetVersion = "$env:packageVersion-beta-$env:appveyor_build_number"
-
-    Update-AppveyorBuild -Version $env:buildVersion
-
-
-    echo "BuildVersion:" $env:buildVersion
-
-    echo "NugetVersion:" $env:nugetVersion
-
-    echo "Version:" {version}
 
 configuration: Release
 
@@ -27,9 +16,9 @@ platform: Any CPU
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: $(buildVersion)
+  version: '{version}'
   package_version: $(nugetVersion)
-  assembly_version: $(buildVersion)
+  assembly_version: '{version}'
   file_version: $(nugetVersion)
   informational_version: $(nugetVersion)
 
@@ -37,17 +26,12 @@ before_build:
 - cmd: nuget restore
 
 build:
-  publish_nuget: true
-  publish_nuget_symbols: true
   verbosity: minimal
 
 after_build:
-- ps: >-
-    echo {version}
+- ps: dotnet pack Promat.Images\Promat.Images.csproj --configuration Release --include-symbols --no-build --output "$env:APPVEYOR_BUILD_FOLDER"
 
-    echo $env:nugetVersion
-
-    dotnet pack Promat.Images\Promat.Images.csproj --configuration Release --include-symbols --no-build --output "C:\projects\promatimages"
+test: off
 
 artifacts:
 - path: '*.nupkg'
