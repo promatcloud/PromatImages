@@ -3,7 +3,7 @@ version: 1.0.1.{build}
 image: Visual Studio 2019
 
 environment:
-  packageVersion: 1.0.1
+  packageVersion: 1.0.10
 
 init:
 - ps: >-
