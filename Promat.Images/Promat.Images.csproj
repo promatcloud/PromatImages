@@ -5,6 +5,7 @@
     <PackageId>PromatImages</PackageId>
     <Authors>Promat Team</Authors>
     <Version>1.0.1</Version>
+    <PackageVersion>1.0.22</PackageVersion>
     <Company>Promat Asesoría técnica de servicios</Company>
     <Description>Promat Asesoría técnica de servicios</Description>
     <PackageTags>images csharp netstandard</PackageTags>
