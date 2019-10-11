@@ -32,8 +32,6 @@ build:
 after_build:
 - ps: dotnet pack Promat.Images\Promat.Images.csproj --configuration Release --include-symbols --no-build --output "$env:APPVEYOR_BUILD_FOLDER"
 
-test: off
-
 artifacts:
 - path: '*.nupkg'
 
