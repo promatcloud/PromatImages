@@ -84,5 +84,26 @@ namespace Tests
             // Cambiar la opacidad 
             Image miImagenSemitransparente2 = Transformation.Opacity(PromatLogoFile, 0.5f);
         }
+        [Test]
+        public void CreationTest()
+        {
+            Creation.Arrow(new Point(0, 0), new Point(100, 0), 2, 10).Save(Path.Combine(OutputPath, "derecha.png"));
+            Creation.Arrow(new Point(100, 0), new Point(0, 0), 2, 5).Save(Path.Combine(OutputPath, "izquierda.png"));
+            Creation.Arrow(new Point(0, 0), new Point(0, 100), 2, 3).Save(Path.Combine(OutputPath, "arriba.png"));
+            Creation.Arrow(new Point(0, 100), new Point(0, 0), 2, 4).Save(Path.Combine(OutputPath, "abajo.png"));
+            Creation.Arrow(new Point(0, 0), new Point(100, 0), 2, 10, Color.Blue, true).Save(Path.Combine(OutputPath, "derechaBidireccional.png"));
+            Creation.Arrow(new Point(100, 0), new Point(0, 0), 2, 5, Color.Aqua, true).Save(Path.Combine(OutputPath, "izquierdaBidireccional.png"));
+            Creation.Arrow(new Point(0, 0), new Point(0, 100), 2, 3, Color.Brown, true).Save(Path.Combine(OutputPath, "arribaBidireccional.png"));
+            Creation.Arrow(new Point(0, 100), new Point(0, 0), 2, 4, Color.DarkGreen, true).Save(Path.Combine(OutputPath, "abajoBidireccional.png"));
+
+            Creation.Arrow(new Point(0, 0), new Point(200, 100), 2, 4, marginY: 10).Save(Path.Combine(OutputPath, "derechaArriba.png"));
+            Creation.Arrow(new Point(0, 0), new Point(100, -50), 2, 15).Save(Path.Combine(OutputPath, "derechaAbajo.png"));
+            Creation.Arrow(new Point(0, 0), new Point(-100, -50), 2, 15).Save(Path.Combine(OutputPath, "izquierdaAbajo.png"));
+            Creation.Arrow(new Point(0, 0), new Point(-100, 50), 2, 8).Save(Path.Combine(OutputPath, "izquierdaArriba.png"));
+            Creation.Arrow(new Point(0, 0), new Point(200, 100), 2, 4, Color.Blue, true, marginY: 10).Save(Path.Combine(OutputPath, "derechaArribaBidireccional.png"));
+            Creation.Arrow(new Point(0, 0), new Point(100, -50), 2, 15, Color.Blue, true).Save(Path.Combine(OutputPath, "derechaAbajoBidireccional.png"));
+            Creation.Arrow(new Point(0, 0), new Point(-100, -50), 2, 15, Color.Blue, true).Save(Path.Combine(OutputPath, "izquierdaAbajoBidireccional.png"));
+            Creation.Arrow(new Point(0, 0), new Point(-100, 50), 2, 8, Color.Blue, true).Save(Path.Combine(OutputPath, "izquierdaArribaBidireccional.png"));
+        }
     }
 }
