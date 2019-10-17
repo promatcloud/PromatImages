@@ -84,5 +84,32 @@ namespace Promat.Images.ExtensionMethods
 
             return new Point(x, y);
         }
+
+        /// <summary>
+        /// Devuelve una imagen del tamaño indicado resultado de redimensionar la imagen facilitada como parámetro
+        /// </summary>
+        /// <param name="image">Imagen a redimensionar</param>
+        /// <param name="width">Ancho deseado</param>
+        /// <param name="height">Alto deseado</param>
+        public static Image Resize(this Image image, int width, int height) => Transformation.Resize(image, width, height);
+        /// <summary>
+        /// Devuelve una imagen redimensionada de la imagen indicada ajustada al tamaño indicado respetando su proponcionalidad.
+        /// </summary>
+        /// <param name="image">Imagen a reescalar</param>
+        /// <param name="maxWidth">Ancho máximo deseado</param>
+        /// <param name="maxHeight">Alto máximo deseado</param>
+        public static Image Scale(this Image image, int maxWidth, int maxHeight) => Transformation.Resize(image, maxWidth, maxHeight);
+        /// <summary>
+        /// Devuelve una imagen resultado de rotar la imagen facilitada como parámetro
+        /// </summary>
+        /// <param name="image">Imagen a rotar</param>
+        /// <param name="degrees">Grados que se quiere rotar</param>
+        public static Image Rotate(this Image image, float degrees) => Transformation.Rotate(image, degrees);
+        /// <summary>
+        /// Devuelve una imagen resultado de aplicar el factor de opacidad indicado a la imagen facilitada como parámetro
+        /// </summary>
+        /// <param name="image">Imagen cuya opacidad se quiere cambiar</param>
+        /// <param name="opacity">Valor de 0 a 1 que indica el grado de opacidad</param>
+        public static Image Opacity(this Image image, float opacity) => Transformation.Opacity(image, opacity);
     }
 }
