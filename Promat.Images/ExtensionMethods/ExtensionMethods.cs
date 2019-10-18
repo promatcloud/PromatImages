@@ -67,6 +67,11 @@ namespace Promat.Images.ExtensionMethods
             var image = Image.FromFile(imageFile);
             return canvas.GetPointToDraw(alignment, image.Width, image.Height);
         }
+        public static Point GetPointToDraw(this CanvasConfiguration canvas, Stream stream, ContentAlignment alignment)
+        {
+            var image = Image.FromStream(stream);
+            return canvas.GetPointToDraw(alignment, image.Width, image.Height);
+        }
         public static Point GetPointToDraw(this CanvasConfiguration canvas, Image image, ContentAlignment alignment)
             => canvas.GetPointToDraw(alignment, image.Width, image.Height);
         public static Point GetPointToDraw(this CanvasConfiguration canvas, ContentAlignment alignment, int width, int height)

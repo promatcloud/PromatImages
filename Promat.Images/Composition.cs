@@ -103,6 +103,39 @@ namespace Promat.Images
             return context;
         }
 
+        public static ComposeContext Add(this ComposeContext context, Stream stream, float opacity = 1)
+        {
+            context.Images.Add(new ImageComposeConfiguration(stream, opacity));
+            return context;
+        }
+        public static ComposeContext Add(this ComposeContext context, Stream stream, int targetWidth, int targetHeight, float opacity = 1)
+        {
+            context.Images.Add(new ImageComposeConfiguration(stream, targetWidth, targetHeight, opacity));
+            return context;
+        }
+        public static ComposeContext Add(this ComposeContext context, Stream stream, ContentAlignment alignment, float opacity = 1)
+        {
+            context.Images.Add(new ImageComposeConfiguration(stream, context.Configuration.GetPointToDraw(stream, alignment), opacity));
+            return context;
+        }
+        public static ComposeContext Add(this ComposeContext context, Stream stream, int targetWidth, int targetHeight, ContentAlignment alignment, float opacity = 1)
+        {
+            context.Images.Add(new ImageComposeConfiguration(stream, targetWidth, targetHeight, context.Configuration.GetPointToDraw(alignment, targetWidth, targetHeight), opacity));
+            return context;
+        }
+        public static ComposeContext Add(this ComposeContext context, Stream stream, ContentAlignment alignment, int xOffset, int yOffset, float opacity = 1)
+        {
+            var point = context.Configuration.GetPointToDraw(stream, alignment);
+            context.Images.Add(new ImageComposeConfiguration(stream, new Point(point.X + xOffset, point.Y + yOffset), opacity));
+            return context;
+        }
+        public static ComposeContext Add(this ComposeContext context, Stream stream, int targetWidth, int targetHeight, ContentAlignment alignment, int xOffset, int yOffset, float opacity = 1)
+        {
+            var point = context.Configuration.GetPointToDraw(alignment, targetWidth, targetHeight);
+            context.Images.Add(new ImageComposeConfiguration(stream, targetWidth, targetHeight, new Point(point.X + xOffset, point.Y + yOffset), opacity));
+            return context;
+        }
+
         public static Image Compose(this ComposeContext context) => Compose(context.Configuration, context.Images.ToArray());
 
         public static Image Compose(CanvasConfiguration canvasConfiguration, params ImageComposeConfiguration[] imagesConfigurations)

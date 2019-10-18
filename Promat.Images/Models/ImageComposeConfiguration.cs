@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.IO;
 using Promat.Images.ExtensionMethods;
 using Image = SixLabors.ImageSharp.Image;
 
@@ -96,6 +97,49 @@ namespace Promat.Images.Models
             => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition), opacity);
         public ImageComposeConfiguration(string imageFile, int width, int height, float opacity)
             => ImageComposeConfigurationConstructor(Image.Load(imageFile), width, height, Point.Empty, opacity);
+
+        public ImageComposeConfiguration(Stream stream)
+        {
+            Image = Image.Load(stream);
+            Width = Image.Width;
+            Height = Image.Height;
+            PointToDrawInComposition = Point.Empty;
+        }
+        public ImageComposeConfiguration(Stream stream, Point pointToDrawInComposition)
+        {
+            Image = Image.Load(stream);
+            Width = Image.Width;
+            Height = Image.Height;
+            PointToDrawInComposition = pointToDrawInComposition;
+        }
+        public ImageComposeConfiguration(Stream stream, int width, int height, Point pointToDrawInComposition)
+            => ImageComposeConfigurationConstructor(Image.Load(stream), width, height, pointToDrawInComposition);
+        public ImageComposeConfiguration(Stream stream, int width, int height, int coordinateXToDrawInComposition, int coordinateYToDrawInComposition)
+            => ImageComposeConfigurationConstructor(Image.Load(stream), width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition));
+        public ImageComposeConfiguration(Stream stream, int width, int height)
+            => ImageComposeConfigurationConstructor(Image.Load(stream), width, height, Point.Empty);
+        public ImageComposeConfiguration(Stream stream, float opacity)
+        {
+            Image = Image.Load(stream);
+            Width = Image.Width;
+            Height = Image.Height;
+            PointToDrawInComposition = Point.Empty;
+            SetOpacity(opacity);
+        }
+        public ImageComposeConfiguration(Stream stream, Point pointToDrawInComposition, float opacity)
+        {
+            Image = Image.Load(stream);
+            Width = Image.Width;
+            Height = Image.Height;
+            PointToDrawInComposition = pointToDrawInComposition;
+            SetOpacity(opacity);
+        }
+        public ImageComposeConfiguration(Stream stream, int width, int height, Point pointToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(Image.Load(stream), width, height, pointToDrawInComposition, opacity);
+        public ImageComposeConfiguration(Stream stream, int width, int height, int coordinateXToDrawInComposition, int coordinateYToDrawInComposition, float opacity)
+            => ImageComposeConfigurationConstructor(Image.Load(stream), width, height, new Point(coordinateXToDrawInComposition, coordinateYToDrawInComposition), opacity);
+        public ImageComposeConfiguration(Stream stream, int width, int height, float opacity)
+            => ImageComposeConfigurationConstructor(Image.Load(stream), width, height, Point.Empty, opacity);
 
         private void SetOpacity(float opacity)
         {

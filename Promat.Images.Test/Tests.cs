@@ -1,14 +1,9 @@
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Net.Mime;
 using System.Reflection;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using NUnit.Framework;
-using Promat.Images;
-using Promat.Images.Models;
 
-namespace Tests
+namespace Promat.Images.Test
 {
     public class Tests
     {
@@ -26,7 +21,26 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void Composition1WithStreamTest()
+        {
+            using (var stream1 = new FileStream(Images[0], FileMode.Open))
+            {
+                using (var stream2 = new FileStream(Images[1], FileMode.Open))
+                {
+                    using (var stream3 = new FileStream(Images[2], FileMode.Open))
+                    {
+                        var resultImage = Composition.Begin(512, 512)
+                                .Add(stream1, 400, 400, ContentAlignment.MiddleCenter)
+                                .Add(stream2, 350, 350, ContentAlignment.MiddleCenter)
+                                .Add(stream3, 256, 256, ContentAlignment.BottomLeft, -40, 5)
+                                .Compose();
+                        resultImage.Save(Path.Combine(OutputPath, "compositionFromStream.png"));
+                    }
+                }
+            }
+        }
+        [Test]
+        public void Composition2WithImageTest()
         {
             var img1 = Image.FromFile(Images[0]);
             var img2 = Image.FromFile(Images[1]);
@@ -36,10 +50,10 @@ namespace Tests
                     .Add(img2, 350, 350, ContentAlignment.MiddleCenter)
                     .Add(img3, 256, 256, ContentAlignment.BottomLeft, -40, 5)
                     .Compose();
-            resultImage.Save(Path.Combine(OutputPath, "composition1.png"));
+            resultImage.Save(Path.Combine(OutputPath, "compositionFromImage.png"));
         }
         [Test]
-        public void Test2()
+        public void Composition3WithFilenameTest()
         {
             // Iniciamos la composición indicando que será de 512x512 pixels
             var resultImage = Composition.Begin(512, 512)
@@ -53,36 +67,58 @@ namespace Tests
                     // Obtenemos la composición con los parámetros configurados anteriormente
                     .Compose();
             // Guardamos la composición
-            resultImage.Save(Path.Combine(OutputPath, "composition2.png"));
+            resultImage.Save(Path.Combine(OutputPath, "compositionFromFilename.png"));
         }
         [Test]
-        public void Test3()
+        public void WatermarkTest()
         {
             var resultImage = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2], 500, 500), Transformation.Resize(Images[0], 300, 300));
             var resultImage2 = Composition.CreateImageWithWatermark(Transformation.Resize(Images[2], 500, 500), Transformation.Resize(Images[0], 300, 300), 0.9f);
 
-            resultImage.Save(Path.Combine(OutputPath, "composition3_1.png"));
-            resultImage2.Save(Path.Combine(OutputPath, "composition3_2.png"));
+            resultImage.Save(Path.Combine(OutputPath, "compositionImageWithWatermark_1.png"));
+            resultImage2.Save(Path.Combine(OutputPath, "compositionImageWithWatermark_2.png"));
         }
         [Test]
-        public void Test4()
+        public void TransformationsTest()
         {
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            {
+                // Redimensionar a partir de un stream
+                var miImagenRedimensionada3 = Transformation.Resize(streamPromatLogo, 16, 16);
+            }
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            {
+                // Reescalado a partir de un stream
+                var miImagenReescalada3 = Transformation.Scale(streamPromatLogo, 75, 50);
+            }
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            {
+                // Cambiar la opacidad a partir de un stream
+                var miImagenSemitransparente3 = Transformation.Opacity(streamPromatLogo, 0.5f);
+            }
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            {
+                // Rotar a partir de un stream
+                var miImagenRotada3 = Transformation.Rotate(streamPromatLogo, 0.5f);
+            }
+
             // Redimensionar a partir de un System.Drawing.Image o System.Drawing.Bitmap
-            Image miImagenRedimensionada1 = Transformation.Resize(Image.FromFile(PromatLogoFile), 32, 32);
+            var miImagenRedimensionada1 = Transformation.Resize(Image.FromFile(PromatLogoFile), 32, 32);
+            // Reescalado a partir de un System.Drawing.Image o System.Drawing.Bitmap
+            var miImagenReescalada1 = Transformation.Scale(Image.FromFile(PromatLogoFile), 150, 120);
+            // Cambiar la opacidad a partir de un System.Drawing.Image o System.Drawing.Bitmap
+            var miImagenSemitransparente1 = Transformation.Opacity(Image.FromFile(PromatLogoFile), 0.5f);
+            // Rotar a partir de un System.Drawing.Image o System.Drawing.Bitmap
+            var miImagenRotada = Transformation.Rotate(Image.FromFile(PromatLogoFile), 90);
 
             // Redimensionar a partir de un archivo
-            Image miImagenRedimensionada2 = Transformation.Resize(PromatLogoFile, 16, 16);
-
-            // Reescalado a partir de un System.Drawing.Image o System.Drawing.Bitmap
-            Image miImagenReescalada1 = Transformation.Scale(Image.FromFile(PromatLogoFile), 150, 120);
-
+            var miImagenRedimensionada2 = Transformation.Resize(PromatLogoFile, 16, 16);
             // Reescalado a partir de un archivo
-            Image miImagenReescalada2 = Transformation.Scale(PromatLogoFile, 75, 50);
-
-            // Cambiar la opacidad 
-            Image miImagenSemitransparente1 = Transformation.Opacity(Image.FromFile(PromatLogoFile), 0.5f);
-            // Cambiar la opacidad 
-            Image miImagenSemitransparente2 = Transformation.Opacity(PromatLogoFile, 0.5f);
+            var miImagenReescalada2 = Transformation.Scale(PromatLogoFile, 75, 50);
+            // Cambiar la opacidad a partir de un archivo
+            var miImagenSemitransparente2 = Transformation.Opacity(PromatLogoFile, 0.5f);
+            // Rotar a partir de un archivo
+            var miImagenRotada2 = Transformation.Rotate(PromatLogoFile, 0.5f);
         }
         [Test]
         public void CreationTest()
