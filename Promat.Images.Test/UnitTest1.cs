@@ -105,5 +105,10 @@ namespace Tests
             Creation.Arrow(new Point(0, 0), new Point(-100, -50), 2, 15, Color.Blue, true).Save(Path.Combine(OutputPath, "izquierdaAbajoBidireccional.png"));
             Creation.Arrow(new Point(0, 0), new Point(-100, 50), 2, 8, Color.Blue, true).Save(Path.Combine(OutputPath, "izquierdaArribaBidireccional.png"));
         }
+        [Test]
+        public void CreationWithSizeThatAtSomeMomentFailedTest()
+        {
+            Creation.Arrow(Point.Empty, new Point(256, 61), 2, 6).Save(Path.Combine(OutputPath, "CreationWithSizeThatAtSomeMomentFailedTest.png"));
+        }
     }
 }

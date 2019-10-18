@@ -83,8 +83,35 @@ namespace Promat.Images
                 marginY--;
             }
 
+            var cropX = xOffset - marginX;
+            var cropY = yOffset - marginY;
+            var cropWidth = rectX + marginX * 2;
+            var cropHeight = rectY + marginY * 2;
+
+            if (cropX < 0)
+            {
+                cropX = 0;
+            }
+            if (cropY < 0)
+            {
+                cropY = 0;
+            }
+            if (cropWidth + cropX > rotated.Width)
+            {
+                cropWidth = rotated.Width - cropX;
+            }
+            if (cropHeight + cropY > rotated.Height)
+            {
+                cropHeight = rotated.Height - cropY;
+            }
+
+            if (cropWidth + cropX == rotated.Width && cropHeight + cropY == rotated.Height)
+            {
+                return rotated.ToImage();
+            }
+
             return rotated
-                    .Clone(c => c.Crop(new Rectangle(xOffset - marginX, yOffset - marginY, rectX + marginX * 2, rectY + marginY * 2))
+                    .Clone(c => c.Crop(new Rectangle(cropX, cropY, cropWidth, cropHeight))
                                          .Resize(rectX, rectY))
                     .ToImage();
         }
