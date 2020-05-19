@@ -146,7 +146,7 @@ namespace Promat.Images
             {
                 using (var imageCopy = imageConfiguration.Image.Clone(x => x.Resize(imageConfiguration.Width, imageConfiguration.Height)))
                 {
-                    composition.Mutate(context => context.DrawImage(imageCopy, new SixLabors.Primitives.Point(imageConfiguration.PointToDrawInComposition.X, imageConfiguration.PointToDrawInComposition.Y), imageConfiguration.Opacity));
+                    composition.Mutate(context => context.DrawImage(imageCopy, new SixLabors.ImageSharp.Point(imageConfiguration.PointToDrawInComposition.X, imageConfiguration.PointToDrawInComposition.Y), imageConfiguration.Opacity));
                 }
             }
 

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using Promat.Images.ExtensionMethods;
+using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.Processing;
-using Pen = SixLabors.ImageSharp.Processing.Pen;
+using Pen = SixLabors.ImageSharp.Drawing.Processing.Pen;
 using Point = System.Drawing.Point;
-using PointF = SixLabors.Primitives.PointF;
-using Rectangle = SixLabors.Primitives.Rectangle;
+using PointF = SixLabors.ImageSharp.PointF;
+using Rectangle = SixLabors.ImageSharp.Rectangle;
 
 namespace Promat.Images
 {

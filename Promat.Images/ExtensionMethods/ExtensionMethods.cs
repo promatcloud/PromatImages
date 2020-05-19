@@ -4,6 +4,7 @@ using System.IO;
 using Promat.Images.Models;
 using SixLabors.ImageSharp;
 using Image = System.Drawing.Image;
+using Point = System.Drawing.Point;
 
 namespace Promat.Images.ExtensionMethods
 {
