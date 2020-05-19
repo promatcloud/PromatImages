@@ -81,22 +81,22 @@ namespace Promat.Images.Test
         [Test]
         public void TransformationsTest()
         {
-            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 // Redimensionar a partir de un stream
                 var miImagenRedimensionada3 = Transformation.Resize(streamPromatLogo, 16, 16);
             }
-            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 // Reescalado a partir de un stream
                 var miImagenReescalada3 = Transformation.Scale(streamPromatLogo, 75, 50);
             }
-            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 // Cambiar la opacidad a partir de un stream
                 var miImagenSemitransparente3 = Transformation.Opacity(streamPromatLogo, 0.5f);
             }
-            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open))
+            using (var streamPromatLogo = new FileStream(PromatLogoFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 // Rotar a partir de un stream
                 var miImagenRotada3 = Transformation.Rotate(streamPromatLogo, 0.5f);

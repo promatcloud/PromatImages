@@ -5,7 +5,14 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promat.Images", "Promat.Images\Promat.Images.csproj", "{A39FD2E5-FF0D-42B4-BBB1-A6F6DE8FB6BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promat.Images.Test", "Promat.Images.Test\Promat.Images.Test.csproj", "{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promat.Images.Test", "Promat.Images.Test\Promat.Images.Test.csproj", "{B9D2B5C0-72DB-4AC9-AD26-4273A05A9A32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C9DCE37-D318-4E5E-B0B6-D37782C861D6}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
