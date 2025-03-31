@@ -1,7 +1,7 @@
+using NUnit.Framework;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using NUnit.Framework;
 
 namespace Promat.Images.Test
 {

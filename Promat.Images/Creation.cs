@@ -1,9 +1,8 @@
-﻿using System;
-using System.Drawing;
-using Promat.Images.ExtensionMethods;
+﻿using Promat.Images.ExtensionMethods;
 using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.Processing;
-using Pen = SixLabors.ImageSharp.Drawing.Processing.Pen;
+using System;
+using System.Drawing;
 using Point = System.Drawing.Point;
 using PointF = SixLabors.ImageSharp.PointF;
 using Rectangle = SixLabors.ImageSharp.Rectangle;
@@ -30,7 +29,7 @@ namespace Promat.Images
         /// <param name="from">Punto del que parte la flecha</param>
         /// <param name="to">Punto en el que termina la flecha</param>
         /// <param name="lineWidth">Grueso de la línea de la flecha</param>
-        /// <param name="arrowSize">Tamaño de la punta de la flecha (desde el centro de la línea a su parte superio/inferior)</param>
+        /// <param name="arrowSize">Tamaño de la punta de la flecha (desde el centro de la línea a su parte superior/inferior)</param>
         /// <param name="arrowColor">Color de la flecha</param>
         /// <param name="bidireccional">True si queremos que la flecha tenga punta en sus dos extremos</param>
         /// <param name="marginX">Pixels que se quiere dar de margen a la composición en el eje X (si es muy grande se reducirá hasta el máximo posible)</param>
@@ -122,7 +121,7 @@ namespace Promat.Images
             var color = arrowColor ?? Color.Black;
             var imageSharpColor = SixLabors.ImageSharp.Color.FromRgba(color.R, color.G, color.B, color.A);
             var horizontal = Convert.ToSingle(horizontalWidth);
-            var pen = new Pen(imageSharpColor, lineWidth);
+            var pen = new SolidPen(imageSharpColor, lineWidth);
             SixLabors.ImageSharp.Image img;
             var linePoints = new[]
             {
@@ -143,7 +142,7 @@ namespace Promat.Images
 
             return img.Clone(ctx =>
                              {
-                                 ctx.DrawLines(pen, linePoints)
+                                 ctx.DrawLine(pen, linePoints)
                                          .DrawPolygon(imageSharpColor, 1, arrowPoints)
                                          .FillPolygon(imageSharpColor, arrowPoints);
 
